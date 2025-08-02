@@ -4,12 +4,14 @@ mod handlers;
 mod services;
 mod models;
 mod repository;
+mod middleware;
 
 use actix_web::{App, HttpServer, web};
 use handlers::province::{get_all, get_by_id};
 use config::Config;
 use db::init_db;
 use sqlx::PgPool;
+use middleware::api_key::ApiKeyAuth;
 
 #[actix_web::main]
 pub async fn main() -> std::io::Result<()> {
@@ -20,9 +22,10 @@ pub async fn main() -> std::io::Result<()> {
 
     HttpServer::new(move || {
         App::new()
-        .app_data(web::Data::new(pool.clone()))
-        .service(get_all)
-        .service(get_by_id)
+            .wrap(ApiKeyAuth::new(config.api_key.clone()))
+            .app_data(web::Data::new(pool.clone()))
+            .service(get_all)
+            .service(get_by_id)
     })
     .bind("127.0.0.1:8081")?
     .run()
