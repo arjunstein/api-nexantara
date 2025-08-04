@@ -7,7 +7,6 @@ mod repository;
 mod middleware;
 
 use actix_web::{App, HttpServer, web};
-use handlers::province::{get_all, get_by_id};
 use config::Config;
 use db::init_db;
 use sqlx::PgPool;
@@ -24,8 +23,10 @@ pub async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(ApiKeyAuth::new(config.api_key.clone()))
             .app_data(web::Data::new(pool.clone()))
-            .service(get_all)
-            .service(get_by_id)
+            // Register all services
+            .service(handlers::province::get_all)
+            .service(handlers::province::get_by_id)
+            .service(handlers::regency::get_by_province_id)
     })
     .bind("127.0.0.1:8081")?
     .run()
