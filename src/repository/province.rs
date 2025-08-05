@@ -4,7 +4,7 @@ use uuid::Uuid;
 use anyhow::Result;
 
 pub async fn get_all_provinces(pool: &PgPool) -> Result<Vec<Province>> {
-    let provinces = sqlx::query_as::<_, Province>("SELECT * FROM provinces ORDER BY name ASC")
+    let provinces = sqlx::query_as::<_, Province>("SELECT * FROM provinces ORDER BY province_name ASC")
     .fetch_all(pool)
     .await?;
 
