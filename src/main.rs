@@ -27,6 +27,7 @@ pub async fn main() -> std::io::Result<()> {
             .service(handlers::province::get_all)
             .service(handlers::province::get_by_id)
             .service(handlers::regency::get_regencies_by_province_id)
+            .service(handlers::district::get_districts_by_regency_id)
     })
     .bind("127.0.0.1:8081")?
     .run()
