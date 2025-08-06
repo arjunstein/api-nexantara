@@ -9,7 +9,7 @@ pub struct QueryParams {
 }
 
 #[get("/api/v1/provinces")]
-pub async fn get_all(pool: web::Data<PgPool>, query: web::Query<QueryParams>) -> impl Responder {
+pub async fn get_all_provinces_with_search(pool: web::Data<PgPool>, query: web::Query<QueryParams>) -> impl Responder {
     if let Some(search_query) = &query.search {
         match search_provinces_service(&pool, search_query).await {
             Ok(provinces) => return HttpResponse::Ok().json(provinces),
