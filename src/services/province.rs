@@ -1,5 +1,5 @@
 use crate::models::province::Province;
-use crate::repository::province::{get_all_provinces, get_province_by_id};
+use crate::repository::province::{get_all_provinces, get_province_by_id, search_provinces};
 use sqlx::PgPool;
 use uuid::Uuid;
 use anyhow::Result;
@@ -10,4 +10,8 @@ pub async fn fetch_all_provinces(pool: &PgPool) -> Result<Vec<Province>> {
 
 pub async fn fetch_province_by_id(pool: &PgPool, id: Uuid) -> Result<Option<Province>> {
     get_province_by_id(pool, id).await
+}
+
+pub async fn search_provinces_service(pool: &PgPool, query: &str) -> Result<Vec<Province>> {
+    search_provinces(pool, query).await
 }
