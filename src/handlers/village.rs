@@ -1,11 +1,23 @@
 use actix_web::{get, web, HttpResponse, Responder};
-use crate::services::village::{fetch_villages_by_district_id};
+use crate::services::village::{fetch_villages_by_district_id, search_villages_service};
 use sqlx::PgPool;
 use uuid::Uuid;
+use serde::Deserialize;
+
+#[derive(Debug, Deserialize)]
+pub struct QueryParams {
+    pub search: Option<String>,
+}
 
 #[get("/api/v1/districts/{district_id}/villages")]
-pub async fn get_villages_by_district_id(pool: web::Data<PgPool>, path: web::Path<Uuid>) -> impl Responder {
+pub async fn get_villages_by_district_id_with_search(pool: web::Data<PgPool>, path: web::Path<Uuid>, query: web::Query<QueryParams>) -> impl Responder {
     let district_id = path.into_inner();
+    if let Some(search_query) = &query.search {
+        match search_villages_service(&pool, district_id, search_query).await {
+            Ok(villages) => return HttpResponse::Ok().json(villages),
+            Err(e) => return HttpResponse::InternalServerError().body(e.to_string()),
+        }
+    }
     match fetch_villages_by_district_id(&pool, district_id).await {
         Ok(villages) => HttpResponse::Ok().json(villages),
         Err(e) => HttpResponse::InternalServerError().body(e.to_string()),

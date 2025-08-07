@@ -1,6 +1,5 @@
 use crate::models::province::Province;
 use sqlx::PgPool;
-use uuid::Uuid;
 use anyhow::Result;
 
 pub async fn get_all_provinces(pool: &PgPool) -> Result<Vec<Province>> {
@@ -11,11 +10,14 @@ pub async fn get_all_provinces(pool: &PgPool) -> Result<Vec<Province>> {
     Ok(provinces)
 }
 
-pub async fn get_province_by_id(pool: &PgPool, id: Uuid) -> Result<Option<Province>> {
-    let province = sqlx::query_as::<_, Province>("SELECT * FROM provinces WHERE id = $1")
-    .bind(id)
-    .fetch_optional(pool)
+pub async fn search_provinces(pool: &PgPool, query: &str) -> Result<Vec<Province>> {
+    let search_pattern = format!("%{}%", query);
+    let provinces = sqlx::query_as::<_, Province>(
+        "SELECT * FROM provinces WHERE LOWER(province_name) LIKE LOWER($1) ORDER BY province_name ASC"
+    )
+    .bind(search_pattern)
+    .fetch_all(pool)
     .await?;
 
-    Ok(province)
+    Ok(provinces)
 }
