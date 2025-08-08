@@ -1,0 +1,39 @@
+province_code,province_name,capital_city,area_km,population
+11,Aceh,Banda Aceh,57956,5271500
+12,Sumatera Utara,Medan,72981,14936020
+13,Sumatera Barat,Padang,42012,5538500
+14,Riau,Pekanbaru,87023,6744720
+15,Jambi,Jambi,50160,3540460
+16,Sumatera Selatan,Palembang,91592,8348300
+17,Bengkulu,Bengkulu,19919,2011670
+18,Lampung,Bandar Lampung,34623,9001760
+19,Kepulauan Bangka Belitung,Pangkal Pinang,16424,1521600
+21,Kepulauan Riau,Tanjung Pinang,8201,2276500
+31,DKI Jakarta,Jakarta,664,10848970
+32,Jawa Barat,Bandung,35245,48274620
+33,Jawa Tengah,Semarang,32800,36741670
+34,DI Yogyakarta,Yogyakarta,3133,3758030
+35,Jawa Timur,Surabaya,47921,40665990
+36,Banten,Serang,9662,12390450
+51,Bali,Denpasar,5780,4313800
+52,Nusa Tenggara Barat,Mataram,18572,5321200
+53,Nusa Tenggara Timur,Kupang,48718,5380550
+61,Kalimantan Barat,Pontianak,147307,5095490
+62,Kalimantan Tengah,Palangka Raya,153564,2665960
+63,Kalimantan Selatan,Banjarmasin,38744,4078800
+64,Kalimantan Timur,Samarinda,127346,3701100
+65,Kalimantan Utara,Tanjung Selor,13925,727600
+71,Sulawesi Utara,Manado,13851,2557000
+72,Sulawesi Tengah,Palu,61841,3038200
+73,Sulawesi Selatan,Makassar,46116,9112400
+74,Sulawesi Tenggara,Kendari,38067,2622700
+75,Gorontalo,Gorontalo,11257,1171800
+76,Sulawesi Barat,Mamuju,16787,1362200
+81,Maluku,Ambon,46914,1838370
+82,Maluku Utara,Sofifi,31982,1246800
+91,Papua Barat,Manokwari,102955,1134060
+92,Papua,Jayapura,319036,4304200
+94,Papua Selatan,Merauke,127280,513600
+95,Papua Tengah,Nabire,66709,1394800
+96,Papua Pegunungan,Wamena,108476,1154300
+97,Papua Barat Daya,Sorong,39267,591100

@@ -2,6 +2,7 @@
 name = "nexantara-api"
 version = "0.1.0"
 edition = "2024"
+default-run = "nexantara-api"
 
 [dependencies]
 actix-web = "4"
@@ -16,3 +17,4 @@ anyhow = "1.0"
 chrono = { version = "0.4", features = ["serde"] }
 actix-service = "2.0.3"
 futures-util = "0.3.31"
+csv = "1"
