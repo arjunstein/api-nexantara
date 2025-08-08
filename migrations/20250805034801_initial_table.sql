@@ -1,4 +1,3 @@
--- Add migration script here
 -- Drop existing tables in reverse order of dependencies
 DROP TABLE IF EXISTS villages CASCADE;
 DROP TABLE IF EXISTS districts CASCADE;
@@ -16,7 +15,7 @@ $$ LANGUAGE plpgsql;
 
 -- Create provinces table with updated column name
 CREATE TABLE IF NOT EXISTS provinces (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id VARCHAR(12) PRIMARY KEY,
     province_name VARCHAR(100) NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -30,9 +29,9 @@ CREATE TRIGGER update_provinces_modtime
 
 -- Create regencies table with updated column names
 CREATE TABLE IF NOT EXISTS regencies (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id VARCHAR(12) PRIMARY KEY,
     regency_name VARCHAR(100) NOT NULL,
-    province_id UUID NOT NULL,
+    province_id VARCHAR(12) NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     CONSTRAINT fk_province FOREIGN KEY (province_id) REFERENCES provinces(id) ON DELETE CASCADE
@@ -46,9 +45,9 @@ CREATE TRIGGER update_regencies_modtime
 
 -- Create districts table with updated column names
 CREATE TABLE IF NOT EXISTS districts (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id VARCHAR(12) PRIMARY KEY,
     district_name VARCHAR(100) NOT NULL,
-    regency_id UUID NOT NULL,
+    regency_id VARCHAR(12) NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     CONSTRAINT fk_regency FOREIGN KEY (regency_id) REFERENCES regencies(id) ON DELETE CASCADE
@@ -62,10 +61,10 @@ CREATE TRIGGER update_districts_modtime
 
 -- Create villages table with updated column names and added postal_code
 CREATE TABLE IF NOT EXISTS villages (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id VARCHAR(20) PRIMARY KEY,
     village_name VARCHAR(100) NOT NULL,
     postal_code VARCHAR(10) NOT NULL,
-    district_id UUID NOT NULL,
+    district_id VARCHAR(12) NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     CONSTRAINT fk_district FOREIGN KEY (district_id) REFERENCES districts(id) ON DELETE CASCADE
