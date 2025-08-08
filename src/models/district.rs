@@ -1,13 +1,12 @@
-use serde::{Serialize, Deserialize};
-use uuid::Uuid;
 use chrono::{DateTime, Utc};
+use serde::{Deserialize, Serialize};
 use sqlx::FromRow;
 
 #[derive(Debug, Serialize, Deserialize, FromRow)]
 pub struct District {
-    pub id: Uuid,
+    pub id: String,
     pub district_name: String,
-    pub regency_id: Uuid,
+    pub regency_id: String,
     pub created_at: DateTime<Utc>,
     pub updated_at: DateTime<Utc>,
 }
