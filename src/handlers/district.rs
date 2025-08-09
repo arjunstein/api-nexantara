@@ -8,7 +8,7 @@ pub struct QueryParams {
     pub search: Option<String>,
 }
 
-#[get("/api/v1/regencies/{regency_id}/districts")]
+#[get("/regencies/{regency_id}/districts")]
 pub async fn get_districts_by_regency_id_with_search(
     pool: web::Data<PgPool>,
     path: web::Path<String>,

@@ -8,7 +8,7 @@ A high-performance RESTful API for Indonesian administrative divisions (Province
 - 📊 **Complete Data**: Covers all provinces, regencies, districts, and villages in Indonesia
 - 🔍 **Easy Querying**: Simple and intuitive API endpoints for all administrative levels
 - 🔒 **Secure**: API key authentication for protected endpoints
-- 🗺️ **Postal Codes**: Includes postal code data at the village level
+- 🗺️ **Postal Codes**: Coming soon...
 
 ## Tech Stack
 
@@ -31,14 +31,14 @@ A high-performance RESTful API for Indonesian administrative divisions (Province
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/nexantara-api.git
+   git clone https://github.com/arjunstein/nexantara-api.git
    cd nexantara-api
    ```
 
 2. Create a `.env` file in the root directory with the following variables:
 
    ```env
-   DATABASE_URL=postgres://username:password@localhost:5432/nexantara
+   DATABASE_URL=postgres://username:password@localhost:5432/db
    API_KEY=your_secure_api_key_here
    RUST_LOG=debug
    ```
@@ -55,7 +55,7 @@ A high-performance RESTful API for Indonesian administrative divisions (Province
    cargo run --release
    ```
 
-   The API will be available at `http://localhost:8081`
+   The API will be available at `http://localhost:8080`
 
 ## API Endpoints
 
@@ -85,34 +85,6 @@ A high-performance RESTful API for Indonesian administrative divisions (Province
 ### Authentication
 
 All endpoints require an API key in the `X-API-Key` header.
-
-## Database Schema
-
-The database consists of four main tables with the following relationships:
-
-- `provinces` (1) -> (many) `regencies`
-- `regencies` (1) -> (many) `districts`
-- `districts` (1) -> (many) `villages`
-
-## Development
-
-### Running Tests
-
-```bash
-cargo test
-```
-
-### Code Formatting
-
-```bash
-cargo fmt
-```
-
-### Linting
-
-```bash
-cargo clippy
-```
 
 ## License
 
