@@ -10,12 +10,13 @@ pub struct QueryParams {
 
 #[utoipa::path(
     get,
-    path = "/api/v1/provinces",
+    path = "/provinces",
     params(
+        ("X-API-KEY" = String, Header, description = "x-api-key token"),
         ("search" = Option<String>, Query, description = "Search provinces (optional)")
     ),
     responses(
-        (status = 200, description = "List provinces", body = [Province]),
+        (status = 200, description = "Ok", body = [Province]),
         (status = 500, description = "Internal server error")
     ),
     tag = "Provinces"
