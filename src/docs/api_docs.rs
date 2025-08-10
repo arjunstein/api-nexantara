@@ -11,5 +11,8 @@ use utoipa::OpenApi;
     tags(
         (name = "Provinces")
     ),
+    servers(
+        (url = "/api/v1", description = "Base path")
+    )
 )]
 pub struct ApiDoc;
