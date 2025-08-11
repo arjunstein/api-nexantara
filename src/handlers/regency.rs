@@ -8,6 +8,20 @@ pub struct QueryParams {
     pub search: Option<String>,
 }
 
+#[utoipa::path(
+    get,
+    path = "/provinces/{province_id}/regencies",
+    params(
+        ("X-API-KEY" = String, Header, description = "x-api-key token"),
+        ("province_id" = String, Path, description = "Province ID"),
+        ("search" = Option<String>, Query, description = "Search regencies (optional)")
+    ),
+    responses(
+        (status = 200, description = "Ok", body = [Regency]),
+        (status = 500, description = "Internal server error")
+    ),
+    tag = "Regencies"
+)]
 #[get("/provinces/{province_id}/regencies")]
 pub async fn get_regencies_by_province_id_with_search(
     pool: web::Data<PgPool>,
