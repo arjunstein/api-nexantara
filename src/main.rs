@@ -21,7 +21,7 @@ pub async fn main() -> std::io::Result<()> {
     let config = Config::from_env();
     let pool: PgPool = init_db(&config).await;
 
-    println!("🚀 Server running at http://127.0.0.1:8081");
+    println!("🚀 Server running...");
 
     HttpServer::new(move || {
         App::new()
@@ -36,7 +36,7 @@ pub async fn main() -> std::io::Result<()> {
                     .service(handlers::village::get_villages_by_district_id_with_search),
             )
     })
-    .bind("127.0.0.1:8081")?
+    .bind("0.0.0.0:8081")?
     .run()
     .await
 }
