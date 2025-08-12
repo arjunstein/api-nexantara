@@ -20,8 +20,12 @@ use utoipa_swagger_ui::SwaggerUi;
 pub async fn main() -> std::io::Result<()> {
     let config = Config::from_env();
     let pool: PgPool = init_db(&config).await;
+    let port = std::env::var("PORT")
+        .expect("PORT environment variable is not set")
+        .parse::<u16>()
+        .expect("PORT must be a valid number");
 
-    println!("🚀 Server running...");
+    println!("🚀 Server running port {}", port);
 
     HttpServer::new(move || {
         App::new()
@@ -36,7 +40,7 @@ pub async fn main() -> std::io::Result<()> {
                     .service(handlers::village::get_villages_by_district_id_with_search),
             )
     })
-    .bind("0.0.0.0:8081")?
+    .bind(("0.0.0.0", port))?
     .run()
     .await
 }
