@@ -19,10 +19,10 @@ use utoipa::OpenApi;
         )
     ),
     tags(
-        (name = "Provinces", description = "Provinces endpoint"),
-        (name = "Regencies", description = "Regencies endpoint"),
-        (name = "Districts", description = "Districts endpoint"),
-        (name = "Villages", description = "Villages endpoint"),
+        (name = "Provinces", description = "Get All Provinces"),
+        (name = "Regencies", description = "Get Regencies by Province ID"),
+        (name = "Districts", description = "Get Districts by Regency ID"),
+        (name = "Villages", description = "Get Villages by District ID"),
     ),
     servers(
         (url = "/api/v1", description = "Base path")

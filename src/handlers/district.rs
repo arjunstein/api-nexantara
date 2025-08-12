@@ -14,7 +14,7 @@ pub struct QueryParams {
     params(
         ("X-API-KEY" = String, Header, description = "x-api-key token"),
         ("regency_id" = String, Path, description = "Regency ID"),
-        ("search" = Option<String>, Query, description = "Search districts (optional)")
+        ("search" = Option<String>, Query, description = "Search districts by name (optional)")
     ),
     responses(
         (status = 200, description = "Ok", body = [District]),
