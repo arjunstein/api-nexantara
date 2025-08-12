@@ -13,7 +13,7 @@ pub struct QueryParams {
     path = "/provinces",
     params(
         ("X-API-KEY" = String, Header, description = "x-api-key token"),
-        ("search" = Option<String>, Query, description = "Search provinces (optional)")
+        ("search" = Option<String>, Query, description = "Search provinces by name (optional)")
     ),
     responses(
         (status = 200, description = "Ok", body = [Province]),
