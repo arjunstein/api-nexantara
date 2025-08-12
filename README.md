@@ -62,24 +62,17 @@ A high-performance RESTful API for Indonesian administrative divisions (Province
 ### Provinces
 
 - `GET /api/v1/provinces` - Get all provinces
-- `GET /api/v1/provinces/{id}` - Get province by ID
 
 ### Regencies
 
-- `GET /api/v1/regencies` - Get all regencies
-- `GET /api/v1/regencies/{id}` - Get regency by ID
 - `GET /api/v1/provinces/{province_id}/regencies` - Get regencies by province ID
 
 ### Districts
 
-- `GET /api/v1/districts` - Get all districts
-- `GET /api/v1/districts/{id}` - Get district by ID
 - `GET /api/v1/regencies/{regency_id}/districts` - Get districts by regency ID
 
 ### Villages
 
-- `GET /api/v1/villages` - Get all villages
-- `GET /api/v1/villages/{id}` - Get village by ID
 - `GET /api/v1/districts/{district_id}/villages` - Get villages by district ID
 
 ### Authentication
