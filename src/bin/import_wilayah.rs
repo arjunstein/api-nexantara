@@ -7,6 +7,7 @@ use serde_json::Value;
 use sqlx::{PgPool, QueryBuilder, postgres::PgPoolOptions};
 use std::{collections::HashMap, env};
 
+const BASE_URL: &str = "https://wilayah.id/api";
 #[derive(Debug, Deserialize)]
 struct WilayahData {
     code: String,
@@ -23,7 +24,6 @@ async fn main() -> Result<()> {
     info!("🚀 Starting data import from Wilayah.id...");
 
     let database_url = env::var("DATABASE_URL").context("DATABASE_URL must be set")?;
-    let base_url = env::var("API_WILAYAH").expect("environment variable is not set");
 
     let pool = PgPoolOptions::new()
         .max_connections(10)
